@@ -95,12 +95,10 @@ func (l *LogEntry) GetOne(id string) (*LogEntry, error) {
 }
 
 func (l *LogEntry) DropCollection() error {
-
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
 	collection := client.Database("logs").Collection("logs")
-
 	if err := collection.Drop(ctx); err != nil {
 		return err
 	}
@@ -128,10 +126,8 @@ func (l *LogEntry) Update() (*mongo.UpdateResult, error) {
 			}},
 		},
 	)
-
 	if err != nil {
 		return nil, err
 	}
-
 	return result, nil
 }
